@@ -8,6 +8,10 @@ This model is then compared to an Azure AutoML run.
 ## Summary
 This dataset contains data about a marketing campaign based on calls of an specific bank, and we seek to predict if the client has subscribed to a bank product. 
 Afer executing both methods, AUTO ML and HyperDrive Hyperparameter Tuning, the best performing model was a VotingEnsemble with AutoML, with an accuracy of 0.9154, vs the LogisticRegression with Hyperparameter Tuning (C: 4, max-iter: 30) obtaining 0.9122.
+The AutoML method tested several models including RandomForest, LightGBM, XGBoostClassifier between others:
+
+And the most accurated model, VotingEnsemble, is in fact a machine learning model that combines the predictions from multiple other models. The following depicts all the models that AutoML method used.
+![Alt text](Automl.JPG?raw=true)
 
 ## Scikit-learn Pipeline
 The pipeline used with Scikit-learn was a LogisticRegression algorithm including the following steps, after defining the compute cluster to use:
@@ -15,6 +19,9 @@ The pipeline used with Scikit-learn was a LogisticRegression algorithm including
 2. Clean the data using One Hot Encoding for categorical features
 3. Configure the parameter sampler (Random) in order to tune the C and max-iter parameters. The RandomParameterSampling is faster than a complete GridSearch.
 4. Specify the early stopping policy, based on slack criteria, and a frequency and delay interval for evaluation. Basically it will discard any run if the policy does not meet. 
+
+The policy that I´ve used was BanditPolicy, due to it helps defining a minimum required improvement in order to continue with the parameter search. So, if the minimum requirement does not met, the process stop and we save valuable computational time.
+
 5. Configuration of the HyperDriveConfig using the estimator
 6. Execution of the Experiment
 
