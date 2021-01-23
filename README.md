@@ -37,6 +37,9 @@ In order to complete the AutoML implementation, the following steps were necessa
 3. As the auto_ml config requires a Dataset, we need to convert the cleaned dataframes (x and y) into a Dataset.
 4. Configure the AutoMl run  specifying the task (classification), the metric (accuracy) and the number of cross validation between others.
 5. Execution of the experiment.  
+6. Execute the automl_run.get_output() in order to review parameters used by AutoML. Just a quick note, there could be an issue with the version of azureml-train-automl-runtime used in the AutoML execution, vs the one used in JupyterNotebook., so it may be require to updgrade the azureml-train-automl-runtime before executing the automl_run.get_output() command.
+7. The Automl use a combination of multiple parameters, for instance learning_rate (step size at each iteration while moving toward a minimum of a loss function) and max_depth (max number of levels in each decision tree), among others.
+![Alt text](AutoMLParams.JPG?raw=true)
 
 ## Pipeline comparison
 The AutoML results in a slightly better accuracy as it tested the several algorithms with different parameters, but it takes much longer to complete.
