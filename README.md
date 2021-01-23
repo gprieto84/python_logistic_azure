@@ -7,11 +7,16 @@ This model is then compared to an Azure AutoML run.
 
 ## Summary
 This dataset contains data about a marketing campaign based on calls of an specific bank, and we seek to predict if the client has subscribed to a bank product. 
-Afer executing both methods, AUTO ML and HyperDrive Hyperparameter Tuning, the best performing model was a VotingEnsemble with AutoML, with an accuracy of 0.9154, vs the LogisticRegression with Hyperparameter Tuning (C: 4, max-iter: 30) obtaining 0.9122.
+Afer executing both methods, AUTO ML and HyperDrive Hyperparameter Tuning, the best performing model was a VotingEnsemble with AutoML, with an accuracy of 0.9154, vs the LogisticRegression with Hyperparameter Tuning (C: 4, max_iter: 30) obtaining 0.9122.
+The HyperParameter chosen were:
+* C: Inverse of regularization strength, in order handle a possible overfitting issue. That means smaller values specify stronger regularization. Link about regularization: https://en.wikipedia.org/wiki/Regularization_%28mathematics%29
+* max_iter: Maximum number of iterations used.
+
 The AutoML method tested several models including RandomForest, LightGBM, XGBoostClassifier between others:
+![Alt text](Automl.JPG?raw=true)
 
 And the most accurated model, VotingEnsemble, is in fact a machine learning model that combines the predictions from multiple other models. The following depicts all the models that AutoML method used.
-![Alt text](Automl.JPG?raw=true)
+
 
 ## Scikit-learn Pipeline
 The pipeline used with Scikit-learn was a LogisticRegression algorithm including the following steps, after defining the compute cluster to use:
